@@ -1,0 +1,10 @@
+with friends_salary as
+(select friends.id, friends.friend_id, packages.salary as friend_salary from friends
+join packages on friends.friend_id = packages.id)
+
+
+select s.name from students as s
+join packages as p on s.id = p.id
+join friends_salary as f_s on s.id = f_s.id
+where friend_salary > salary
+order by friend_salary;
