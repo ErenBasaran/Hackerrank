@@ -1,0 +1,36 @@
+1.Solution: <br>
+
+select case
+        when grade >= 8 then name
+        else Null
+        end as name,
+        grade, 
+        marks
+from students as s
+join grades as s on s.marks between g.min_mark and g.max_mark
+order by grade desc, name asc, marks asc; <br>
+
+2.Solution: <br>
+
+with table1 as(
+select name, marks, (case
+        when marks >=0 and marks <=9 then 1
+        when marks >=10 and marks <=19 then 2
+        when marks >=20 and marks <=29 then 3
+        when marks >=30 and marks <=39 then 4
+        when marks >=40 and marks <=49 then 5
+        when marks >=50 and marks <=59 then 6
+        when marks >=60 and marks <=69 then 7
+        when marks >=70 and marks <=79 then 8
+        when marks >=80 and marks <=89 then 9
+        when marks >=90 and marks <=100 then 10
+        end) as grade
+        from Students)
+
+select case
+        when grade >= 8 then name
+        else Null
+        end as name,
+        grade, marks
+from table1
+order by grade desc, name asc, marks asc; <br>
